@@ -1,5 +1,6 @@
 import 'dart:math';
-import 'package:coderjava_firexcode/coderjava_firexcode.dart';
+
+import 'package:flutter/material.dart';
 
 enum PickMode {
   Color,
@@ -103,8 +104,7 @@ class _BarColorPickerState extends State<BarColorPicker> {
     percent = HSVColor.fromColor(widget.initialColor).hue / 360;
   }
 
-  @override
-  Widget build(BuildContext context) {
+  /*Widget build2(BuildContext context) {
     final thumbRadius = widget.thumbRadius;
     final horizontal = widget.horizontal;
 
@@ -172,6 +172,103 @@ class _BarColorPickerState extends State<BarColorPicker> {
       onPanStart: (details) => handleTouch(details.globalPosition, context),
       onPanUpdate: (details) => handleTouch(details.globalPosition, context),
     );
+  }*/
+
+  @override
+  Widget build(BuildContext context) {
+    final thumbRadius = widget.thumbRadius;
+    final horizontal = widget.horizontal;
+
+    double thumbLeft, thumbTop;
+    if (horizontal) {
+      thumbLeft = barWidth * percent;
+    } else {
+      thumbTop = barHeight * percent;
+    }
+
+    // build thumb
+    var thumb = Positioned(
+        left: thumbLeft,
+        top: thumbTop,
+        child: Container(
+          padding: EdgeInsets.zero,
+          width: thumbRadius * 2,
+          height: thumbRadius * 2,
+          decoration:
+              BoxDecoration(color: widget.thumbColor, borderRadius: BorderRadius.circular(thumbRadius), boxShadow: [
+            BoxShadow(
+              color: _kThumbShadowColor,
+              spreadRadius: 2,
+              blurRadius: 3,
+            ),
+          ]),
+        ));
+
+    // build frame
+    double frameWidth, frameHeight;
+    if (horizontal) {
+      frameWidth = barWidth + thumbRadius * 2;
+      frameHeight = thumbRadius * 2;
+    } else {
+      frameWidth = thumbRadius * 2;
+      frameHeight = barHeight + thumbRadius * 2;
+    }
+    Widget frame = SizedBox(width: frameWidth, height: frameHeight);
+
+    // build content
+    Gradient gradient;
+    double left, top;
+    if (horizontal) {
+      gradient = LinearGradient(colors: colors);
+      left = thumbRadius;
+      top = (thumbRadius * 2 - barHeight) / 2;
+    } else {
+      gradient = LinearGradient(
+        colors: colors,
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
+      left = (thumbRadius * 2 - barWidth) / 2;
+      top = thumbRadius;
+    }
+    var content = Positioned(
+      left: left,
+      top: top,
+      child: Container(
+        width: barWidth,
+        height: barHeight,
+        decoration: BoxDecoration(
+          gradient: gradient,
+          borderRadius: BorderRadius.circular(widget.cornerRadius),
+        ),
+        child: Material(
+          color: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(widget.cornerRadius),
+          ),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(widget.cornerRadius),
+            child: Padding(
+              padding: EdgeInsets.zero,
+              child: Text(''),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    return GestureDetector(
+      onPanDown: (details) => handleTouch(details.globalPosition, context),
+      onPanStart: (details) => handleTouch(details.globalPosition, context),
+      onPanUpdate: (details) => handleTouch(details.globalPosition, context),
+      child: Stack(
+        children: [
+          frame,
+          content,
+          thumb,
+        ],
+      ),
+    );
   }
 
   /// calculate colors picked from palette and update our states.
@@ -195,8 +292,7 @@ class _BarColorPickerState extends State<BarColorPicker> {
         break;
       case PickMode.Grey:
         final channel = (0xff * percent).toInt();
-        widget.colorListener(
-            Color.fromARGB(0xff, channel, channel, channel).value);
+        widget.colorListener(Color.fromARGB(0xff, channel, channel, channel).value);
         break;
     }
   }
@@ -260,8 +356,7 @@ class _CircleColorPickerState extends State<CircleColorPicker> {
     thumbRadians = degreesToRadians(270 - hue);
   }
 
-  @override
-  Widget build(BuildContext context) {
+  /*Widget build2(BuildContext context) {
     final radius = widget.radius;
     final thumbRadius = widget.thumbRadius;
 
@@ -286,9 +381,7 @@ class _CircleColorPickerState extends State<CircleColorPicker> {
     ));
     return xStack.list(
       [
-        SizedBox(
-            width: (radius + thumbRadius) * 2,
-            height: (radius + thumbRadius) * 2),
+        SizedBox(width: (radius + thumbRadius) * 2, height: (radius + thumbRadius) * 2),
         Positioned(
           left: thumbRadius,
           top: thumbRadius,
@@ -307,6 +400,90 @@ class _CircleColorPickerState extends State<CircleColorPicker> {
       onPanDown: (details) => handleTouch(details.globalPosition, context),
       onPanStart: (details) => handleTouch(details.globalPosition, context),
       onPanUpdate: (details) => handleTouch(details.globalPosition, context),
+    );
+  }*/
+
+  @override
+  Widget build(BuildContext context) {
+    final radius = widget.radius;
+    final thumbRadius = widget.thumbRadius;
+
+    // compute thumb center coordinate
+    final thumbCenterX = radius + thumbDistanceToCenter * sin(thumbRadians);
+    final thumbCenterY = radius + thumbDistanceToCenter * cos(thumbRadians);
+
+    // build thumb widget
+    Widget thumb = Positioned(
+      left: thumbCenterX,
+      top: thumbCenterY,
+      child: Container(
+        width: thumbRadius * 2,
+        height: thumbRadius * 2,
+        decoration: BoxDecoration(
+          color: widget.thumbColor,
+          boxShadow: [
+            BoxShadow(
+              color: _kThumbShadowColor,
+              blurRadius: 3,
+              spreadRadius: 2,
+            ),
+          ],
+          borderRadius: BorderRadius.circular(thumbRadius),
+        ),
+        child: Material(
+          color: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(thumbRadius),
+          ),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(thumbRadius),
+            child: Padding(
+              padding: EdgeInsets.zero,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onPanDown: (details) => handleTouch(details.globalPosition, context),
+      onPanStart: (details) => handleTouch(details.globalPosition, context),
+      onPanUpdate: (details) => handleTouch(details.globalPosition, context),
+      child: Stack(
+        children: [
+          SizedBox(
+            width: (radius + thumbRadius) * 2,
+            height: (radius + thumbRadius) * 2,
+          ),
+          Positioned(
+            left: thumbRadius,
+            top: thumbRadius,
+            child: Container(
+              width: radius * 2,
+              height: radius * 2,
+              decoration: BoxDecoration(
+                gradient: SweepGradient(colors: colors),
+                borderRadius: BorderRadius.circular(radius),
+              ),
+              child: Material(
+                color: Colors.transparent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(radius),
+                ),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(radius),
+                  child: Padding(
+                    padding: EdgeInsets.zero,
+                    child: Text(''),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          thumb,
+        ],
+      ),
     );
   }
 

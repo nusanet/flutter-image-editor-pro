@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../coderjava_image_editor_pro.dart';
 
+
 class TextAddEdit extends StatefulWidget {
   final int index;
   final Map mapValue;
