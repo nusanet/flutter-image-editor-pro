@@ -58,13 +58,7 @@ class BarColorPicker extends StatefulWidget {
     this.initialColor = const Color(0xffff0000),
     this.thumbColor = Colors.black,
     required this.colorListener,
-  })  : assert(pickMode != null),
-        assert(horizontal != null),
-        assert(width != null),
-        assert(cornerRadius != null),
-        assert(colorListener != null),
-        assert(initialColor != null),
-        super(key: key);
+  });
 
   @override
   _BarColorPickerState createState() => _BarColorPickerState();
@@ -323,10 +317,7 @@ class CircleColorPicker extends StatefulWidget {
       this.thumbColor = Colors.black,
       this.thumbRadius = 8,
       required this.colorListener})
-      : assert(radius != null),
-        assert(thumbColor != null),
-        assert(colorListener != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   State<CircleColorPicker> createState() {
