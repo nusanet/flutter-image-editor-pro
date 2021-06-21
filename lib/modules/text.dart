@@ -363,5 +363,5 @@ class _TextEditorImageState extends State<TextEditorImage> {
     );
   }
 
-  TextAlign align;
+  TextAlign? align;
 }

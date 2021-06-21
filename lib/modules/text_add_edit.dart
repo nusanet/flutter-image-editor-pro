@@ -4,12 +4,12 @@ import '../coderjava_image_editor_pro.dart';
 
 
 class TextAddEdit extends StatefulWidget {
-  final int index;
-  final Map mapValue;
-  final bool isEdit;
+  final int? index;
+  final Map? mapValue;
+  final bool? isEdit;
 
   const TextAddEdit({
-    Key key,
+    Key? key,
     this.mapValue,
     this.index,
     this.isEdit,
@@ -25,8 +25,8 @@ class _TextAddEditState extends State<TextAddEdit> {
 
   @override
   void initState() {
-    if (widget.isEdit) {
-      textFieldController.text = widget.mapValue['name'];
+    if (widget.isEdit!) {
+      textFieldController.text = widget.mapValue!['name'];
     }
     super.initState();
   }
@@ -52,7 +52,7 @@ class _TextAddEditState extends State<TextAddEdit> {
             children: [
               Center(
                 child: Text(
-                  widget.isEdit ? 'Edit Text' : 'Add Text',
+                  widget.isEdit! ? 'Edit Text' : 'Add Text',
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
               ),
@@ -62,7 +62,7 @@ class _TextAddEditState extends State<TextAddEdit> {
                   hintText: 'Insert your message',
                 ),
                 onChanged: (value) {
-                  widgetJson[widget.index]['name'] = value;
+                  widgetJson[widget.index!]!['name'] = value;
                 },
                 validator: (value) {
                   return value == null || value.isEmpty ? 'Please insert your message' : null;
@@ -73,26 +73,26 @@ class _TextAddEditState extends State<TextAddEdit> {
               Slider(
                   activeColor: Colors.black,
                   inactiveColor: Colors.grey,
-                  value: widgetJson[widget.index]['size'],
+                  value: widgetJson[widget.index!]!['size'],
                   min: 0.0,
                   max: 100.0,
                   onChangeEnd: (value) {
-                    setState(() => widgetJson[widget.index]['size'] = value.toDouble());
+                    setState(() => widgetJson[widget.index!]!['size'] = value.toDouble());
                   },
                   onChanged: (value) {
                     setState(() {
                       slider = value;
-                      widgetJson[widget.index]['size'] = value.toDouble();
+                      widgetJson[widget.index!]!['size'] = value.toDouble();
                     });
                   }),
               SizedBox(height: 8),
-              widget.isEdit
+              widget.isEdit!
                   ? Row(
                       children: [
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              widgetJson.removeAt(widget.index);
+                              widgetJson.removeAt(widget.index!);
                               Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
@@ -121,7 +121,7 @@ class _TextAddEditState extends State<TextAddEdit> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (formState.currentState.validate()) {
+                          if (formState.currentState!.validate()) {
                             Navigator.pop(context, true);
                           }
                         },

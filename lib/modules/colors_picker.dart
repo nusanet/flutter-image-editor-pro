@@ -49,7 +49,7 @@ class BarColorPicker extends StatefulWidget {
   final Color initialColor;
 
   BarColorPicker({
-    Key key,
+    Key? key,
     this.pickMode = PickMode.Color,
     this.horizontal = true,
     this.width = 200,
@@ -57,7 +57,7 @@ class BarColorPicker extends StatefulWidget {
     this.thumbRadius = 8,
     this.initialColor = const Color(0xffff0000),
     this.thumbColor = Colors.black,
-    @required this.colorListener,
+    required this.colorListener,
   })  : assert(pickMode != null),
         assert(horizontal != null),
         assert(width != null),
@@ -72,8 +72,8 @@ class BarColorPicker extends StatefulWidget {
 
 class _BarColorPickerState extends State<BarColorPicker> {
   double percent = 0.0;
-  List<Color> colors;
-  double barWidth, barHeight;
+  late List<Color> colors;
+  double? barWidth, barHeight;
 
   @override
   void initState() {
@@ -179,11 +179,11 @@ class _BarColorPickerState extends State<BarColorPicker> {
     final thumbRadius = widget.thumbRadius;
     final horizontal = widget.horizontal;
 
-    double thumbLeft, thumbTop;
+    double? thumbLeft, thumbTop;
     if (horizontal) {
-      thumbLeft = barWidth * percent;
+      thumbLeft = barWidth! * percent;
     } else {
-      thumbTop = barHeight * percent;
+      thumbTop = barHeight! * percent;
     }
 
     // build thumb
@@ -207,11 +207,11 @@ class _BarColorPickerState extends State<BarColorPicker> {
     // build frame
     double frameWidth, frameHeight;
     if (horizontal) {
-      frameWidth = barWidth + thumbRadius * 2;
+      frameWidth = barWidth! + thumbRadius * 2;
       frameHeight = thumbRadius * 2;
     } else {
       frameWidth = thumbRadius * 2;
-      frameHeight = barHeight + thumbRadius * 2;
+      frameHeight = barHeight! + thumbRadius * 2;
     }
     Widget frame = SizedBox(width: frameWidth, height: frameHeight);
 
@@ -221,14 +221,14 @@ class _BarColorPickerState extends State<BarColorPicker> {
     if (horizontal) {
       gradient = LinearGradient(colors: colors);
       left = thumbRadius;
-      top = (thumbRadius * 2 - barHeight) / 2;
+      top = (thumbRadius * 2 - barHeight!) / 2;
     } else {
       gradient = LinearGradient(
         colors: colors,
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       );
-      left = (thumbRadius * 2 - barWidth) / 2;
+      left = (thumbRadius * 2 - barWidth!) / 2;
       top = thumbRadius;
     }
     var content = Positioned(
@@ -273,13 +273,13 @@ class _BarColorPickerState extends State<BarColorPicker> {
 
   /// calculate colors picked from palette and update our states.
   void handleTouch(Offset globalPosition, BuildContext context) {
-    RenderBox box = context.findRenderObject();
+    RenderBox box = context.findRenderObject() as RenderBox;
     var localPosition = box.globalToLocal(globalPosition);
     double percent;
     if (widget.horizontal) {
-      percent = (localPosition.dx - widget.thumbRadius) / barWidth;
+      percent = (localPosition.dx - widget.thumbRadius) / barWidth!;
     } else {
-      percent = (localPosition.dy - widget.thumbRadius) / barHeight;
+      percent = (localPosition.dy - widget.thumbRadius) / barHeight!;
     }
     percent = min(max(0.0, percent), 1.0);
     setState(() {
@@ -317,12 +317,12 @@ class CircleColorPicker extends StatefulWidget {
   final Color initialColor;
 
   CircleColorPicker(
-      {Key key,
+      {Key? key,
       this.radius = 120,
       this.initialColor = const Color(0xffff0000),
       this.thumbColor = Colors.black,
       this.thumbRadius = 8,
-      @required this.colorListener})
+      required this.colorListener})
       : assert(radius != null),
         assert(thumbColor != null),
         assert(colorListener != null),
@@ -345,8 +345,8 @@ class _CircleColorPickerState extends State<CircleColorPicker> {
     Color(0xffff0000)
   ];
 
-  double thumbDistanceToCenter;
-  double thumbRadians;
+  late double thumbDistanceToCenter;
+  late double thumbRadians;
 
   @override
   void initState() {
@@ -489,7 +489,7 @@ class _CircleColorPickerState extends State<CircleColorPicker> {
 
   /// calculate colors picked from palette and update our states.
   void handleTouch(Offset globalPosition, BuildContext context) {
-    RenderBox box = context.findRenderObject();
+    RenderBox box = context.findRenderObject() as RenderBox;
     var localPosition = box.globalToLocal(globalPosition);
     final centerX = box.size.width / 2;
     final centerY = box.size.height / 2;

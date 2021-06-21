@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BottomBarContainer extends StatelessWidget {
-  final Color colors;
-  final Function ontap;
-  final String title;
-  final IconData icons;
+  final Color? colors;
+  final Function? ontap;
+  final String? title;
+  final IconData? icons;
 
-  const BottomBarContainer({Key key, this.ontap, this.title, this.icons, this.colors}) : super(key: key);
+  const BottomBarContainer({Key? key, this.ontap, this.title, this.icons, this.colors}) : super(key: key);
 
   /*Widget build2(BuildContext context) {
     return XColumnCC(mainAxisSize: MainAxisSize.min)
@@ -33,7 +33,7 @@ class BottomBarContainer extends StatelessWidget {
       child: Material(
         color: colors,
         child: InkWell(
-          onTap: ontap,
+          onTap: ontap as void Function()?,
           child: Padding(
             padding: EdgeInsets.all(8),
             child: Column(
@@ -47,7 +47,7 @@ class BottomBarContainer extends StatelessWidget {
                 ),
                 SizedBox(height: 4.0),
                 Text(
-                  title,
+                  title!,
                   style: TextStyle(
                     color: Colors.white,
                   ),

@@ -50,7 +50,7 @@ class _EmojiesState extends State<Emojies> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey[400],
+            color: Colors.grey[400]!,
             blurRadius: 10.9,
           ),
         ]

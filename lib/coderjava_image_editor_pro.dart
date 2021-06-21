@@ -23,18 +23,18 @@ TextEditingController heightController = TextEditingController();
 TextEditingController widthController = TextEditingController();
 var width = 300;
 var height = 300;
-List<Map> widgetJson = [];
+List<Map?> widgetJson = [];
 var howmuchwidgetis = 0;
 Color currentcolors = Colors.white;
 var opicity = 0.0;
 SignatureController _controller = SignatureController(penStrokeWidth: 5, penColor: Colors.green);
 
 class CoderJavaImageEditorPro extends StatefulWidget {
-  final Color appBarColor;
-  final Color bottomBarColor;
-  final Directory pathSave;
-  final double pixelRatio;
-  final String defaultPathImage;
+  final Color? appBarColor;
+  final Color? bottomBarColor;
+  final Directory? pathSave;
+  final double? pixelRatio;
+  final String? defaultPathImage;
   final bool isShowingChooseImage;
   final bool isShowingBrush;
   final bool isShowingText;
@@ -84,15 +84,15 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
   Offset offset2 = Offset.zero;
   final scaf = GlobalKey<ScaffoldState>();
   var openbottomsheet = false;
-  List<Offset> _points = <Offset>[];
+  List<Offset?> _points = <Offset?>[];
   List type = [];
   List alignment = [];
 
   final GlobalKey container = GlobalKey();
   final GlobalKey globalKey = GlobalKey();
-  File _image;
+  File? _image;
   ScreenshotController screenshotController = ScreenshotController();
-  Timer timeprediction;
+  late Timer timeprediction;
 
   void timers() {
     Timer.periodic(Duration(milliseconds: 10), (tim) {
@@ -103,9 +103,9 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (widget.defaultPathImage != null && widget.defaultPathImage.isNotEmpty) {
-        var fileImage = File(widget.defaultPathImage);
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+      if (widget.defaultPathImage != null && widget.defaultPathImage!.isNotEmpty) {
+        var fileImage = File(widget.defaultPathImage!);
         if (fileImage.existsSync()) {
           final decodedImage = await decodeImageFromList(fileImage.readAsBytesSync());
           setState(() {
@@ -167,7 +167,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                 screenshotController.capture(pixelRatio: widget.pixelRatio ?? 1.5).then((binaryIntList) async {
                   final paths = widget.pathSave ?? await getTemporaryDirectory();
                   final file = await File('${paths.path}/' + DateTime.now().toString() + '.jpg').create();
-                  file.writeAsBytesSync(binaryIntList);
+                  file.writeAsBytesSync(binaryIntList!);
                   Navigator.pop(context, file);
                 }).catchError((onError) {
                   print(onError);
@@ -211,7 +211,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                                       alignment: Alignment.center,
                                       fit: BoxFit.fitHeight,
                                       image: FileImage(
-                                        File(_image.path),
+                                        File(_image!.path),
                                       ),
                                     ),
                                   ),
@@ -232,7 +232,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                         child: GestureDetector(
                           onPanUpdate: (DragUpdateDetails details) {
                             setState(() {
-                              RenderBox object = context.findRenderObject();
+                              RenderBox object = context.findRenderObject() as RenderBox;
                               var _localPosition = object.globalToLocal(details.globalPosition);
                               _points = List.from(_points)..add(_localPosition);
                             });
@@ -250,7 +250,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                                   left: offsets[f.key].dx,
                                   top: offsets[f.key].dy,
                                   ontap: () {
-                                    scaf.currentState.showBottomSheet((context) {
+                                    scaf.currentState!.showBottomSheet((context) {
                                       return Sliders(
                                         index: f.key,
                                         mapValue: f.value,
@@ -338,7 +338,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        var image = await picker.getImage(source: ImageSource.gallery);
+                        var image = await (picker.getImage(source: ImageSource.gallery) as FutureOr<PickedFile>);
                         var decodedImage = await decodeImageFromList(File(image.path).readAsBytesSync());
                         setState(() {
                           height = decodedImage.height;
@@ -365,7 +365,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                     SizedBox(width: 24),
                     GestureDetector(
                       onTap: () async {
-                        var image = await picker.getImage(source: ImageSource.camera);
+                        var image = await (picker.getImage(source: ImageSource.camera) as FutureOr<PickedFile>);
                         var decodedImage = await decodeImageFromList(File(image.path).readAsBytesSync());
 
                         setState(() {
@@ -932,7 +932,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
   }
 }
 
-Widget imageFilterLatest({brightness, saturation, hue, child}) {
+Widget imageFilterLatest({required brightness, required saturation, required hue, child}) {
   return ColorFiltered(
     colorFilter: ColorFilter.matrix(
       ColorFilterGenerator.brightnessAdjustMatrix(

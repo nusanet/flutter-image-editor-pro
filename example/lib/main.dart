@@ -24,8 +24,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controllerDefaultImage = TextEditingController();
-  File _defaultImage;
-  File _image;
+  File? _defaultImage;
+  File? _image;
 
   Future<void> getImageEditor() {
     return Navigator.push(
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
             appBarColor: Colors.black87,
             bottomBarColor: Colors.black87,
             pathSave: null,
-            defaultPathImage: _defaultImage == null ? '' : _defaultImage.path,
+            defaultPathImage: _defaultImage == null ? '' : _defaultImage!.path,
             isShowingChooseImage: false,
             isShowingFlip: false,
             isShowingRotate: false,
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                     final imageGallery = await ImagePicker().getImage(source: ImageSource.gallery);
                     if (imageGallery != null) {
                       _defaultImage = File(imageGallery.path);
-                      setState(() => controllerDefaultImage.text = _defaultImage.path);
+                      setState(() => controllerDefaultImage.text = _defaultImage!.path);
                     }
                   },
                 ),
@@ -118,13 +118,13 @@ class _HomePageState extends State<HomePage> {
         isFalse: _image == null
             ? Container()
             : Center(
-                child: Image.file(_image),
+                child: Image.file(_image!),
               ),
       ),
     );
   }
 
-  Widget condition({bool condition, Widget isTrue, Widget isFalse}) {
+  Widget? condition({required bool condition, Widget? isTrue, Widget? isFalse}) {
     return condition ? isTrue : isFalse;
   }
 }
