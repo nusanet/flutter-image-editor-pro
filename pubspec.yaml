@@ -4,23 +4,21 @@ version: 1.0.0
 homepage: https://github.com/CoderJava/flutter-image-editor-pro
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
   flutter: ">=1.20.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  zoom_widget: ^0.1.3
-  font_awesome_flutter: ^9.0.0
-  image_picker: ^0.7.4
-  path_provider: ^2.0.1
-  permission_handler: ^7.0.0
+  cupertino_icons: ^1.0.3
+  font_awesome_flutter: ^9.1.0
+  image_picker: ^0.8.0+3
+  path_provider: ^2.0.2
+  permission_handler: ^8.1.1
   dio: ^4.0.0
-  screenshot: ^0.3.0
-  signature: ^4.0.2
-  flutter_colorpicker: ^0.4.0
-  coderjava_firexcode: ^1.0.0
+  screenshot: ^1.2.1
+  signature: ^4.1.1
+  flutter_colorpicker: 0.4.0
 
 dev_dependencies:
   flutter_test:
