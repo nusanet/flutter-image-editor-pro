@@ -11,10 +11,6 @@ class ImageView extends StatefulWidget {
 }
 
 class _ImageViewState extends State<ImageView> {
-  /*Widget build2(BuildContext context) {
-    return Image.file(widget.file).xCenter().xScaffold();
-  }*/
-
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(

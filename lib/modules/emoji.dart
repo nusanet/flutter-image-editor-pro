@@ -20,25 +20,6 @@ class EmojiView extends StatefulWidget {
 }
 
 class _EmojiViewState extends State<EmojiView> {
-  /*Widget build2(BuildContext context) {
-    return widget.mapJson['name']
-        .toString()
-        .text(
-            textAlign: widget.mapJson['align'],
-            style: TextStyle(
-              color: widget.mapJson['color'],
-              fontSize: widget.mapJson['size'],
-            ))
-        .xGesture(
-          onTap: widget.ontap,
-          onPanUpdate: widget.onpanupdate,
-        )
-        .xPositioned(
-          left: widget.left,
-          top: widget.top,
-        );
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Positioned(

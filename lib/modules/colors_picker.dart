@@ -98,76 +98,6 @@ class _BarColorPickerState extends State<BarColorPicker> {
     percent = HSVColor.fromColor(widget.initialColor).hue / 360;
   }
 
-  /*Widget build2(BuildContext context) {
-    final thumbRadius = widget.thumbRadius;
-    final horizontal = widget.horizontal;
-
-    double thumbLeft, thumbTop;
-    if (horizontal) {
-      thumbLeft = barWidth * percent;
-    } else {
-      thumbTop = barHeight * percent;
-    }
-    // build thumb
-    var thumb = XContainer(
-      padding: EdgeInsets.zero,
-      width: thumbRadius * 2,
-      height: thumbRadius * 2,
-      shadowColor: _kThumbShadowColor,
-      spreadRadius: 2,
-      blurRadius: 3,
-      color: widget.thumbColor,
-      rounded: thumbRadius,
-    ).xPositioned(
-      left: thumbLeft,
-      top: thumbTop,
-    );
-
-    // build frame
-    double frameWidth, frameHeight;
-    if (horizontal) {
-      frameWidth = barWidth + thumbRadius * 2;
-      frameHeight = thumbRadius * 2;
-    } else {
-      frameWidth = thumbRadius * 2;
-      frameHeight = barHeight + thumbRadius * 2;
-    }
-    Widget frame = SizedBox(width: frameWidth, height: frameHeight);
-
-    // build content
-    Gradient gradient;
-    double left, top;
-    if (horizontal) {
-      gradient = LinearGradient(colors: colors);
-      left = thumbRadius;
-      top = (thumbRadius * 2 - barHeight) / 2;
-    } else {
-      gradient = LinearGradient(
-          colors: colors,
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter);
-      left = (thumbRadius * 2 - barWidth) / 2;
-      top = thumbRadius;
-    }
-    var content = XContainerGradient(
-      padding: EdgeInsets.zero,
-      width: barWidth,
-      height: barHeight,
-      rounded: widget.cornerRadius,
-      gradient: gradient,
-      child: ''.text(),
-    ).xPositioned(
-      left: left,
-      top: top,
-    );
-
-    return xStack.list([frame, content, thumb]).xGesture(
-      onPanDown: (details) => handleTouch(details.globalPosition, context),
-      onPanStart: (details) => handleTouch(details.globalPosition, context),
-      onPanUpdate: (details) => handleTouch(details.globalPosition, context),
-    );
-  }*/
-
   @override
   Widget build(BuildContext context) {
     final thumbRadius = widget.thumbRadius;
@@ -346,53 +276,6 @@ class _CircleColorPickerState extends State<CircleColorPicker> {
     final hue = HSVColor.fromColor(widget.initialColor).hue;
     thumbRadians = degreesToRadians(270 - hue);
   }
-
-  /*Widget build2(BuildContext context) {
-    final radius = widget.radius;
-    final thumbRadius = widget.thumbRadius;
-
-    // compute thumb center coordinate
-    final thumbCenterX = radius + thumbDistanceToCenter * sin(thumbRadians);
-    final thumbCenterY = radius + thumbDistanceToCenter * cos(thumbRadians);
-
-    // build thumb widget
-    Widget thumb = Positioned(
-        child: XContainer(
-      padding: EdgeInsets.zero,
-      width: thumbRadius * 2,
-      height: thumbRadius * 2,
-      shadowColor: _kThumbShadowColor,
-      spreadRadius: 2,
-      blurRadius: 3,
-      color: widget.thumbColor,
-      rounded: thumbRadius,
-    ).xPositioned(
-      left: thumbCenterX,
-      top: thumbCenterY,
-    ));
-    return xStack.list(
-      [
-        SizedBox(width: (radius + thumbRadius) * 2, height: (radius + thumbRadius) * 2),
-        Positioned(
-          left: thumbRadius,
-          top: thumbRadius,
-          child: ''.text().xContainerGradient(
-                padding: EdgeInsets.zero,
-                width: radius * 2,
-                height: radius * 2,
-                rounded: radius,
-                gradient: SweepGradient(colors: colors),
-              ),
-        ),
-        thumb
-      ],
-    ).xGesture(
-      behavior: HitTestBehavior.opaque,
-      onPanDown: (details) => handleTouch(details.globalPosition, context),
-      onPanStart: (details) => handleTouch(details.globalPosition, context),
-      onPanUpdate: (details) => handleTouch(details.globalPosition, context),
-    );
-  }*/
 
   @override
   Widget build(BuildContext context) {

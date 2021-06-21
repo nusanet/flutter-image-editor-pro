@@ -19,25 +19,6 @@ class TextView extends StatefulWidget {
 }
 
 class _TextViewState extends State<TextView> {
-  /*Widget build2(BuildContext context) {
-    return widget.mapJson['name']
-        .toString()
-        .text(
-            textAlign: widget.mapJson['align'],
-            style: TextStyle(
-              color: widget.mapJson['color'],
-              fontSize: widget.mapJson['size'],
-            ))
-        .xGesture(
-          onTap: widget.ontap,
-          onPanUpdate: widget.onpanupdate,
-        )
-        .xPositioned(
-          left: widget.left,
-          top: widget.top,
-        );
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Positioned(
