@@ -148,41 +148,41 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
 
   @override
   Widget build(BuildContext context) {
-    return Screenshot(
-      controller: screenshotController,
-      child: Scaffold(
-        key: scaf,
-        backgroundColor: Colors.grey.shade400,
-        appBar: AppBar(
-          actions: [
-            widget.isShowingChooseImage
-                ? IconButton(
-                    icon: Icon(Icons.camera_alt),
-                    onPressed: () => bottomsheets(),
-                  )
-                : Container(),
-            TextButton(
-              child: Text('SAVE'),
-              onPressed: () {
-                screenshotController.capture(pixelRatio: widget.pixelRatio ?? 1.5).then((binaryIntList) async {
-                  final paths = widget.pathSave ?? await getTemporaryDirectory();
-                  final file = await File('${paths.path}/' + DateTime.now().toString() + '.jpg').create();
-                  file.writeAsBytesSync(binaryIntList!);
-                  Navigator.pop(context, file);
-                }).catchError((onError) {
-                  print(onError);
-                });
-              },
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-              ),
+    return Scaffold(
+      key: scaf,
+      backgroundColor: Colors.grey.shade400,
+      appBar: AppBar(
+        actions: [
+          widget.isShowingChooseImage
+              ? IconButton(
+                  icon: Icon(Icons.camera_alt),
+                  onPressed: () => bottomsheets(),
+                )
+              : Container(),
+          TextButton(
+            child: Text('SAVE'),
+            onPressed: () {
+              screenshotController.capture(pixelRatio: widget.pixelRatio ?? 1.5).then((binaryIntList) async {
+                final paths = widget.pathSave ?? await getTemporaryDirectory();
+                final file = await File('${paths.path}/' + DateTime.now().toString() + '.jpg').create();
+                file.writeAsBytesSync(binaryIntList!);
+                Navigator.pop(context, file);
+              }).catchError((onError) {
+                print(onError);
+              });
+            },
+            style: TextButton.styleFrom(
+              primary: Colors.white,
             ),
-          ],
-          brightness: Brightness.dark,
-          backgroundColor: widget.appBarColor ?? Colors.black87,
-        ),
-        bottomNavigationBar: openbottomsheet ? Container() : _buildWidgetListMenu(),
-        body: Center(
+          ),
+        ],
+        brightness: Brightness.dark,
+        backgroundColor: widget.appBarColor ?? Colors.black87,
+      ),
+      bottomNavigationBar: openbottomsheet ? Container() : _buildWidgetListMenu(),
+      body: Screenshot(
+        controller: screenshotController,
+        child: Center(
           child: RotatedBox(
             quarterTurns: rotateValue,
             child: imageFilterLatest(
