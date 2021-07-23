@@ -1,3 +1,11 @@
+## 2.0.4
+
+* Downgrade dependency flutter_colorpicker.
+
+## 2.0.3
+
+* Update dependency image_picker dan flutter_colorpicker.
+
 ## 2.0.2
 
 * Perbaikan hasil edit yang masih tampak menu editornya.
