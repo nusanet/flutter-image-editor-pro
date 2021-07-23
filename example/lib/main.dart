@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                 ElevatedButton(
                   child: Text('Set Default Image'),
                   onPressed: () async {
-                    final imageGallery = await ImagePicker().getImage(source: ImageSource.gallery);
+                    final imageGallery = await ImagePicker().pickImage(source: ImageSource.gallery);
                     if (imageGallery != null) {
                       _defaultImage = File(imageGallery.path);
                       setState(() => controllerDefaultImage.text = _defaultImage!.path);

@@ -338,7 +338,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        var image = await (picker.getImage(source: ImageSource.gallery) as FutureOr<PickedFile>);
+                        var image = await (picker.pickImage(source: ImageSource.gallery) as FutureOr<PickedFile>);
                         var decodedImage = await decodeImageFromList(File(image.path).readAsBytesSync());
                         setState(() {
                           height = decodedImage.height;
@@ -365,7 +365,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                     SizedBox(width: 24),
                     GestureDetector(
                       onTap: () async {
-                        var image = await (picker.getImage(source: ImageSource.camera) as FutureOr<PickedFile>);
+                        var image = await (picker.pickImage(source: ImageSource.camera) as FutureOr<PickedFile>);
                         var decodedImage = await decodeImageFromList(File(image.path).readAsBytesSync());
 
                         setState(() {
