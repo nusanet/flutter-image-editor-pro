@@ -1,3 +1,7 @@
+## 2.1.0
+
+* Update dependency flutter_colorpicker to 0.6.0.
+
 ## 2.0.4
 
 * Downgrade dependency flutter_colorpicker.
