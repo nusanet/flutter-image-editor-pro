@@ -1,3 +1,7 @@
+## 3.0.0
+
+* Migrate to Flutter 3.
+
 ## 2.1.0
 
 * Update dependency flutter_colorpicker to 0.6.0.
