@@ -103,7 +103,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
 
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (widget.defaultPathImage != null && widget.defaultPathImage!.isNotEmpty) {
         var fileImage = File(widget.defaultPathImage!);
         if (fileImage.existsSync()) {
@@ -176,7 +176,6 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
             ),
           ),
         ],
-        brightness: Brightness.dark,
         backgroundColor: widget.appBarColor ?? Colors.black87,
       ),
       bottomNavigationBar: openbottomsheet ? Container() : _buildWidgetListMenu(),
