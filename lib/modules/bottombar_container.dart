@@ -6,7 +6,9 @@ class BottomBarContainer extends StatelessWidget {
   final String? title;
   final IconData? icons;
 
-  const BottomBarContainer({Key? key, this.ontap, this.title, this.icons, this.colors}) : super(key: key);
+  const BottomBarContainer(
+      {Key? key, this.ontap, this.title, this.icons, this.colors})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

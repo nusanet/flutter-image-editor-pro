@@ -41,40 +41,44 @@ class _TextEditorImageState extends State<TextEditorImage> {
                     );
                   },
                 ),
-          align == TextAlign.center ? GestureDetector(
-            onTap: () {
-              setState(() => align = null);
-            },
-            child: Container(
-              child: Center(
-                child: Icon(FontAwesomeIcons.alignCenter),
-              ),
-            ),
-          ) : IconButton(
-            icon: Icon(FontAwesomeIcons.alignCenter),
-            onPressed: () {
-              setState(() {
-                align = TextAlign.center;
-              });
-            },
-          ),
-          align == TextAlign.right ? GestureDetector(
-            onTap: () {
-              setState(() => align = null);
-            },
-            child: Container(
-              child: Center(
-                child: Icon(FontAwesomeIcons.alignRight),
-              ),
-            ),
-          ) : IconButton(
-            icon: Icon(FontAwesomeIcons.alignRight),
-            onPressed: () {
-              setState(() {
-                align = TextAlign.right;
-              });
-            },
-          ),
+          align == TextAlign.center
+              ? GestureDetector(
+                  onTap: () {
+                    setState(() => align = null);
+                  },
+                  child: Container(
+                    child: Center(
+                      child: Icon(FontAwesomeIcons.alignCenter),
+                    ),
+                  ),
+                )
+              : IconButton(
+                  icon: Icon(FontAwesomeIcons.alignCenter),
+                  onPressed: () {
+                    setState(() {
+                      align = TextAlign.center;
+                    });
+                  },
+                ),
+          align == TextAlign.right
+              ? GestureDetector(
+                  onTap: () {
+                    setState(() => align = null);
+                  },
+                  child: Container(
+                    child: Center(
+                      child: Icon(FontAwesomeIcons.alignRight),
+                    ),
+                  ),
+                )
+              : IconButton(
+                  icon: Icon(FontAwesomeIcons.alignRight),
+                  onPressed: () {
+                    setState(() {
+                      align = TextAlign.right;
+                    });
+                  },
+                ),
         ],
       ),
       bottomNavigationBar: Container(
@@ -82,8 +86,12 @@ class _TextEditorImageState extends State<TextEditorImage> {
         child: TextButton(
           child: Text('Add Text'),
           onPressed: () {
-            Navigator.pop(
-                context, {'name': name.text, 'color': currentColor, 'size': slider.toDouble(), 'align': align,});
+            Navigator.pop(context, {
+              'name': name.text,
+              'color': currentColor,
+              'size': slider.toDouble(),
+              'align': align,
+            });
           },
         ),
       ),

@@ -40,8 +40,7 @@ class _ColorPickersSliderState extends State<ColorPickersSlider> {
                   cornerRadius: 10,
                   pickMode: PickMode.Color,
                   colorListener: (int value) {
-                    setState(() {
-                    });
+                    setState(() {});
                   },
                 ),
               ),

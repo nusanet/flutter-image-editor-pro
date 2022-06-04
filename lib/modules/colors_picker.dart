@@ -118,14 +118,16 @@ class _BarColorPickerState extends State<BarColorPicker> {
           padding: EdgeInsets.zero,
           width: thumbRadius * 2,
           height: thumbRadius * 2,
-          decoration:
-              BoxDecoration(color: widget.thumbColor, borderRadius: BorderRadius.circular(thumbRadius), boxShadow: [
-            BoxShadow(
-              color: _kThumbShadowColor,
-              spreadRadius: 2,
-              blurRadius: 3,
-            ),
-          ]),
+          decoration: BoxDecoration(
+              color: widget.thumbColor,
+              borderRadius: BorderRadius.circular(thumbRadius),
+              boxShadow: [
+                BoxShadow(
+                  color: _kThumbShadowColor,
+                  spreadRadius: 2,
+                  blurRadius: 3,
+                ),
+              ]),
         ));
 
     // build frame
@@ -216,7 +218,8 @@ class _BarColorPickerState extends State<BarColorPicker> {
         break;
       case PickMode.Grey:
         final channel = (0xff * percent).toInt();
-        widget.colorListener(Color.fromARGB(0xff, channel, channel, channel).value);
+        widget.colorListener(
+            Color.fromARGB(0xff, channel, channel, channel).value);
         break;
     }
   }

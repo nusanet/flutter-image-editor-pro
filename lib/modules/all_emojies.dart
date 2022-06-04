@@ -14,15 +14,12 @@ class _EmojiesState extends State<Emojies> {
     return Container(
       padding: EdgeInsets.all(0.0),
       height: 400,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey[400]!,
-            blurRadius: 10.9,
-          ),
-        ]
-      ),
+      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(
+          color: Colors.grey[400]!,
+          blurRadius: 10.9,
+        ),
+      ]),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,

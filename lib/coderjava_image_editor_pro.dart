@@ -27,7 +27,8 @@ List<Map?> widgetJson = [];
 var howmuchwidgetis = 0;
 Color currentcolors = Colors.white;
 var opicity = 0.0;
-SignatureController _controller = SignatureController(penStrokeWidth: 5, penColor: Colors.green);
+SignatureController _controller =
+    SignatureController(penStrokeWidth: 5, penColor: Colors.green);
 
 class CoderJavaImageEditorPro extends StatefulWidget {
   final Color? appBarColor;
@@ -63,7 +64,8 @@ class CoderJavaImageEditorPro extends StatefulWidget {
   });
 
   @override
-  _CoderJavaImageEditorProState createState() => _CoderJavaImageEditorProState();
+  _CoderJavaImageEditorProState createState() =>
+      _CoderJavaImageEditorProState();
 }
 
 var slider = 0.0;
@@ -76,7 +78,8 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
   void changeColor(Color color) {
     setState(() => pickerColor = color);
     var points = _controller.points;
-    _controller = SignatureController(penStrokeWidth: 5, penColor: color, points: points);
+    _controller =
+        SignatureController(penStrokeWidth: 5, penColor: color, points: points);
   }
 
   List<Offset> offsets = [];
@@ -104,10 +107,12 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (widget.defaultPathImage != null && widget.defaultPathImage!.isNotEmpty) {
+      if (widget.defaultPathImage != null &&
+          widget.defaultPathImage!.isNotEmpty) {
         var fileImage = File(widget.defaultPathImage!);
         if (fileImage.existsSync()) {
-          final decodedImage = await decodeImageFromList(fileImage.readAsBytesSync());
+          final decodedImage =
+              await decodeImageFromList(fileImage.readAsBytesSync());
           setState(() {
             width = decodedImage.width;
             height = decodedImage.height;
@@ -162,9 +167,13 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
           TextButton(
             child: Text('SAVE'),
             onPressed: () {
-              screenshotController.capture(pixelRatio: widget.pixelRatio ?? 1.5).then((binaryIntList) async {
+              screenshotController
+                  .capture(pixelRatio: widget.pixelRatio ?? 1.5)
+                  .then((binaryIntList) async {
                 final paths = widget.pathSave ?? await getTemporaryDirectory();
-                final file = await File('${paths.path}/' + DateTime.now().toString() + '.jpg').create();
+                final file = await File(
+                        '${paths.path}/' + DateTime.now().toString() + '.jpg')
+                    .create();
                 file.writeAsBytesSync(binaryIntList!);
                 Navigator.pop(context, file);
               }).catchError((onError) {
@@ -178,7 +187,8 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
         ],
         backgroundColor: widget.appBarColor ?? Colors.black87,
       ),
-      bottomNavigationBar: openbottomsheet ? Container() : _buildWidgetListMenu(),
+      bottomNavigationBar:
+          openbottomsheet ? Container() : _buildWidgetListMenu(),
       body: Screenshot(
         controller: screenshotController,
         child: Center(
@@ -220,7 +230,8 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                                       sigmaY: blurValue,
                                     ),
                                     child: Container(
-                                      color: colorValue.withOpacity(opacityValue),
+                                      color:
+                                          colorValue.withOpacity(opacityValue),
                                     ),
                                   ),
                                 ),
@@ -231,8 +242,10 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                         child: GestureDetector(
                           onPanUpdate: (DragUpdateDetails details) {
                             setState(() {
-                              RenderBox object = context.findRenderObject() as RenderBox;
-                              var _localPosition = object.globalToLocal(details.globalPosition);
+                              RenderBox object =
+                                  context.findRenderObject() as RenderBox;
+                              var _localPosition =
+                                  object.globalToLocal(details.globalPosition);
                               _points = List.from(_points)..add(_localPosition);
                             });
                           },
@@ -249,7 +262,8 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                                   left: offsets[f.key].dx,
                                   top: offsets[f.key].dy,
                                   ontap: () {
-                                    scaf.currentState!.showBottomSheet((context) {
+                                    scaf.currentState!
+                                        .showBottomSheet((context) {
                                       return Sliders(
                                         index: f.key,
                                         mapValue: f.value,
@@ -259,7 +273,8 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                                   onpanupdate: (details) {
                                     setState(() {
                                       offsets[f.key] = Offset(
-                                          offsets[f.key].dx + details.delta.dx, offsets[f.key].dy + details.delta.dy);
+                                          offsets[f.key].dx + details.delta.dx,
+                                          offsets[f.key].dy + details.delta.dy);
                                     });
                                   },
                                   mapJson: f.value,
@@ -288,8 +303,10 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                                       onpanupdate: (details) {
                                         setState(() {
                                           offsets[f.key] = Offset(
-                                            offsets[f.key].dx + details.delta.dx,
-                                            offsets[f.key].dy + details.delta.dy,
+                                            offsets[f.key].dx +
+                                                details.delta.dx,
+                                            offsets[f.key].dy +
+                                                details.delta.dy,
                                           );
                                         });
                                       },
@@ -337,8 +354,11 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        var image = await (picker.pickImage(source: ImageSource.gallery) as FutureOr<PickedFile>);
-                        var decodedImage = await decodeImageFromList(File(image.path).readAsBytesSync());
+                        var image =
+                            await (picker.pickImage(source: ImageSource.gallery)
+                                as FutureOr<PickedFile>);
+                        var decodedImage = await decodeImageFromList(
+                            File(image.path).readAsBytesSync());
                         setState(() {
                           height = decodedImage.height;
                           width = decodedImage.width;
@@ -364,8 +384,11 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                     SizedBox(width: 24),
                     GestureDetector(
                       onTap: () async {
-                        var image = await (picker.pickImage(source: ImageSource.camera) as FutureOr<PickedFile>);
-                        var decodedImage = await decodeImageFromList(File(image.path).readAsBytesSync());
+                        var image =
+                            await (picker.pickImage(source: ImageSource.camera)
+                                as FutureOr<PickedFile>);
+                        var decodedImage = await decodeImageFromList(
+                            File(image.path).readAsBytesSync());
 
                         setState(() {
                           height = decodedImage.height;
@@ -421,13 +444,12 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
                       child: ColorPicker(
                         pickerColor: pickerColor,
                         onColorChanged: changeColor,
-                        showLabel: true,
                         pickerAreaHeightPercent: 0.8,
                       ),
                     ),
                     actions: [
                       TextButton(
-                        child: Text('Got it'),
+                        child: Text('Ok'),
                         onPressed: () {
                           setState(() => currentColor = pickerColor);
                           Navigator.pop(context);
@@ -899,7 +921,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
         BottomBarContainer(
           title: 'Emoji',
           colors: widget.bottomBarColor,
-          icons: FontAwesomeIcons.smile,
+          icons: FontAwesomeIcons.faceSmile,
           ontap: () {
             var getemojis = showModalBottomSheet(
               context: context,
@@ -931,7 +953,8 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
   }
 }
 
-Widget imageFilterLatest({required brightness, required saturation, required hue, child}) {
+Widget imageFilterLatest(
+    {required brightness, required saturation, required hue, child}) {
   return ColorFiltered(
     colorFilter: ColorFilter.matrix(
       ColorFilterGenerator.brightnessAdjustMatrix(
@@ -965,7 +988,8 @@ class _SignatState extends State<Signat> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() => print('Value changed'));
+    // debug mode
+    // _controller.addListener(() => print('Value changed'));
   }
 
   @override

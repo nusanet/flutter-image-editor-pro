@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../coderjava_image_editor_pro.dart';
 
-
 class TextAddEdit extends StatefulWidget {
   final int? index;
   final Map? mapValue;
@@ -42,7 +41,9 @@ class _TextAddEditState extends State<TextAddEdit> {
           left: 16,
           top: 16,
           right: 16,
-          bottom: paddingBottom > 0 ? paddingBottom + insetBottom : 16 + insetBottom,
+          bottom: paddingBottom > 0
+              ? paddingBottom + insetBottom
+              : 16 + insetBottom,
         ),
         child: Form(
           key: formState,
@@ -65,7 +66,9 @@ class _TextAddEditState extends State<TextAddEdit> {
                   widgetJson[widget.index!]!['name'] = value;
                 },
                 validator: (value) {
-                  return value == null || value.isEmpty ? 'Please insert your message' : null;
+                  return value == null || value.isEmpty
+                      ? 'Please insert your message'
+                      : null;
                 },
               ),
               SizedBox(height: 8),
@@ -77,7 +80,8 @@ class _TextAddEditState extends State<TextAddEdit> {
                   min: 0.0,
                   max: 100.0,
                   onChangeEnd: (value) {
-                    setState(() => widgetJson[widget.index!]!['size'] = value.toDouble());
+                    setState(() =>
+                        widgetJson[widget.index!]!['size'] = value.toDouble());
                   },
                   onChanged: (value) {
                     setState(() {

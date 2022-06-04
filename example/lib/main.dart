@@ -98,10 +98,12 @@ class _HomePageState extends State<HomePage> {
                 ElevatedButton(
                   child: Text('Set Default Image'),
                   onPressed: () async {
-                    final imageGallery = await ImagePicker().pickImage(source: ImageSource.gallery);
+                    final imageGallery = await ImagePicker()
+                        .pickImage(source: ImageSource.gallery);
                     if (imageGallery != null) {
                       _defaultImage = File(imageGallery.path);
-                      setState(() => controllerDefaultImage.text = _defaultImage!.path);
+                      setState(() =>
+                          controllerDefaultImage.text = _defaultImage!.path);
                     }
                   },
                 ),
@@ -124,7 +126,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget? condition({required bool condition, Widget? isTrue, Widget? isFalse}) {
+  Widget? condition(
+      {required bool condition, Widget? isTrue, Widget? isFalse}) {
     return condition ? isTrue : isFalse;
   }
 }
