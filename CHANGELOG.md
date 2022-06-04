@@ -1,3 +1,8 @@
+## 3.0.1
+
+* Run `flutter pub upgrade`.
+* Reformat code `flutter run .`.
+
 ## 3.0.0
 
 * Migrate to Flutter 3.
