@@ -1,6 +1,6 @@
 name: coderjava_image_editor_pro
 description: Image Editor Plugin with simple, easy support for image editing using paints, text, and emoji like stories.
-version: 2.1.0
+version: 3.0.0
 homepage: https://github.com/nusanet/flutter-image-editor-pro
 
 environment:
@@ -14,11 +14,12 @@ dependencies:
   font_awesome_flutter: ^9.1.0
   image_picker: ^0.8.2
   path_provider: ^2.0.2
-  permission_handler: ^8.1.1
+  permission_handler: ^9.2.0
   dio: ^4.0.0
   screenshot: ^1.2.1
   signature: ^4.1.1
   flutter_colorpicker: ^0.6.0
+  platform: ^3.1.0
 
 dev_dependencies:
   flutter_test:
