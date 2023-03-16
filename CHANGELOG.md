@@ -1,3 +1,7 @@
+## 3.0.2
+
+* Update dependency permission_handler.
+
 ## 3.0.1
 
 * Run `flutter pub upgrade`.
