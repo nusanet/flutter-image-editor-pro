@@ -41,9 +41,7 @@ class _TextAddEditState extends State<TextAddEdit> {
           left: 16,
           top: 16,
           right: 16,
-          bottom: paddingBottom > 0
-              ? paddingBottom + insetBottom
-              : 16 + insetBottom,
+          bottom: paddingBottom > 0 ? paddingBottom + insetBottom : 16 + insetBottom,
         ),
         child: Form(
           key: formState,
@@ -54,7 +52,7 @@ class _TextAddEditState extends State<TextAddEdit> {
               Center(
                 child: Text(
                   widget.isEdit! ? 'Edit Text' : 'Add Text',
-                  style: Theme.of(context).textTheme.subtitle2,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
               TextFormField(
@@ -66,9 +64,7 @@ class _TextAddEditState extends State<TextAddEdit> {
                   widgetJson[widget.index!]!['name'] = value;
                 },
                 validator: (value) {
-                  return value == null || value.isEmpty
-                      ? 'Please insert your message'
-                      : null;
+                  return value == null || value.isEmpty ? 'Please insert your message' : null;
                 },
               ),
               SizedBox(height: 8),
@@ -80,8 +76,7 @@ class _TextAddEditState extends State<TextAddEdit> {
                   min: 0.0,
                   max: 100.0,
                   onChangeEnd: (value) {
-                    setState(() =>
-                        widgetJson[widget.index!]!['size'] = value.toDouble());
+                    setState(() => widgetJson[widget.index!]!['size'] = value.toDouble());
                   },
                   onChanged: (value) {
                     setState(() {
@@ -100,8 +95,8 @@ class _TextAddEditState extends State<TextAddEdit> {
                               Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.red,
-                              onPrimary: Colors.white,
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.red,
                             ),
                             child: Text('REMOVE'),
                           ),
@@ -113,8 +108,8 @@ class _TextAddEditState extends State<TextAddEdit> {
                               Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.black,
-                              onPrimary: Colors.white,
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.black,
                             ),
                             child: Text('UPDATE'),
                           ),
@@ -130,8 +125,8 @@ class _TextAddEditState extends State<TextAddEdit> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.black,
-                          onPrimary: Colors.white,
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.black,
                         ),
                         child: Text('SAVE TEXT'),
                       ),

@@ -181,7 +181,7 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
               });
             },
             style: TextButton.styleFrom(
-              primary: Colors.white,
+              foregroundColor: Colors.white,
             ),
           ),
         ],
