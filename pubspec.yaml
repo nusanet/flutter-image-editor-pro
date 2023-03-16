@@ -14,8 +14,7 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   image_picker: ^0.8.2
   path_provider: ^2.0.2
-  permission_handler: ^9.2.0
-  dio: ^4.0.0
+  permission_handler: ^10.2.0
   screenshot: ^1.2.1
   signature: ^5.0.1
   flutter_colorpicker: ^1.0.3
