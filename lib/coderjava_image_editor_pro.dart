@@ -995,6 +995,7 @@ class _SignatState extends State<Signat> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      physics: NeverScrollableScrollPhysics(),
       children: [
         Signature(
           controller: _controller,
