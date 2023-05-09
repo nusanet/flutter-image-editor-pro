@@ -1,3 +1,7 @@
+## 3.0.3
+
+* Fixed cannot drawing.
+
 ## 3.0.2
 
 * Update dependency permission_handler.
