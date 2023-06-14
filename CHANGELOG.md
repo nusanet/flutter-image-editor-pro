@@ -1,3 +1,7 @@
+## 3.0.4
+
+* Update depdency `screenshot`.
+
 ## 3.0.3
 
 * Fixed cannot drawing.
