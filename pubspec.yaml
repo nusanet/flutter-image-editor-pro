@@ -12,9 +12,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.3
   font_awesome_flutter: ^10.1.0
-  image_picker: ^0.8.2
+  image_picker: ^1.0.4
   path_provider: ^2.0.2
-  permission_handler: ^10.2.0
+  permission_handler: ^11.0.1
   screenshot: ^2.1.0
   signature: ^5.0.1
   flutter_colorpicker: ^1.0.3
