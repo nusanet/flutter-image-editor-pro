@@ -1,6 +1,11 @@
+## 3.0.5
+
+* Update dependencies `permission_handler` and `image_picker`
+* Update example using `compileSdkVersion 34` and `minSdkVersion 22` for platform Android.
+
 ## 3.0.4
 
-* Update depdency `screenshot`.
+* Update dependency `screenshot`.
 
 ## 3.0.3
 
