@@ -1,3 +1,7 @@
+## 3.0.6
+
+* Update kotlin gradle plugin.
+
 ## 3.0.5
 
 * Update dependencies `permission_handler` and `image_picker`
