@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
             isShowingBlur: false,
             isShowingFilter: false,
             isShowingEmoji: false,
+            defaultPickerColor: Colors.red,
           );
         },
       ),

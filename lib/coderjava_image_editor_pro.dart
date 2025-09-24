@@ -45,6 +45,7 @@ class CoderJavaImageEditorPro extends StatefulWidget {
   final bool isShowingEraser;
   final bool isShowingFilter;
   final bool isShowingEmoji;
+  final Color? defaultPickerColor;
 
   CoderJavaImageEditorPro({
     this.appBarColor,
@@ -61,6 +62,7 @@ class CoderJavaImageEditorPro extends StatefulWidget {
     this.isShowingEraser = true,
     this.isShowingFilter = true,
     this.isShowingEmoji = true,
+    this.defaultPickerColor,
   });
 
   @override
@@ -106,6 +108,12 @@ class _CoderJavaImageEditorProState extends State<CoderJavaImageEditorPro> {
 
   @override
   void initState() {
+    if (widget.defaultPickerColor != null) {
+      _controller =
+          SignatureController(penStrokeWidth: 5, penColor: widget.defaultPickerColor!);
+      pickerColor = widget.defaultPickerColor!;
+    }
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (widget.defaultPathImage != null &&
           widget.defaultPathImage!.isNotEmpty) {

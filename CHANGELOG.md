@@ -1,3 +1,7 @@
+## 3.1.0
+
+* Add parameter `defaultPickerColor` to set default picker color.
+
 ## 3.0.6
 
 * Update kotlin gradle plugin.
