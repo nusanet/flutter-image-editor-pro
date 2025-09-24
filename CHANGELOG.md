@@ -1,3 +1,7 @@
+## 3.1.0
+
+* Update versi flutter 3.32.8
+
 ## 3.0.6
 
 * Update kotlin gradle plugin.
