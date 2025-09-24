@@ -1,6 +1,6 @@
 ## 3.1.0
 
-* Update versi flutter 3.32.8
+* Add parameter `defaultPickerColor` to set default picker color.
 
 ## 3.0.6
 
